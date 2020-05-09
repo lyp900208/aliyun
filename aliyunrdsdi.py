@@ -24,3 +24,4 @@ request.set_endpoint(endpoint)
 
 # get response
 response = clt.do_action_with_exception(request)
+print(response)

@@ -37,7 +37,7 @@ while pagenumber <= 1000:
         n = 4
         for i in range(0,len(jresponse),n):
             nresponse = jresponse[i:i+n]
-            print(jresponse)
+#            print(jresponse)
             print(nresponse)
 #            print(response)
             pagenumber += 1

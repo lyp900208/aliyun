@@ -27,3 +27,4 @@ request.set_DBInstanceId(dbinstanceid)
 
 # get response
 response = clt.do_action_with_exception(request)
+print(response)
