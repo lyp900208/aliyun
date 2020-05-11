@@ -1,19 +1,15 @@
 # coding = utf-8
 
+import sys
+import json
+from jsonpath import jsonpath
 from aliyunsdkcore import client
 from aliyunsdkcore.profile import region_provider
 from aliyunsdkecs.request.v20140526 import DescribeInstancesRequest
-import json
-from jsonpath import jsonpath
-import sys
 import set_env
 
 # 初始化参数
-region_id = ''
-secret_id = ''
-secret_key = ''
 product_name = 'ecs'
-endpoint = 'ecs.console.aliyun.com'
 pagesize = 100
 pagenumber = 1
 
