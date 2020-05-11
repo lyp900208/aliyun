@@ -4,7 +4,7 @@ from aliyunsdkcore import client
 from aliyunsdkcore.profile import region_provider
 from aliyunsdkecs.request.v20140526 import DescribeInstancesRequest
 import json
-#from jsonpath import jsonpath
+from jsonpath import jsonpath
 import itertools
 from operator import itemgetter
 
@@ -33,9 +33,13 @@ request.set_PageNumber(pagenumber)
 #request.set_endpoint(endpoint)
 
 # selove request.n
-response = clt.do_action_with_exception(request)#.decode().strip('b')
-jresponse = [json.loads(response) for line in response]
-print(jresponse[:1])
+response = clt.do_action_with_exception(request).decode().strip('b')
+jresponse = json.loads(response)
+jpath = jsonpath(json.loads(response),"$..Instance.*")
+json_response = json.dumps(jpath,indent=4)
+print(json_response)
+#jresponse = [json.loads(response) for line in response]
+#print(response)
 
 
 #    jresponse = jsonpath(json.loads(response),"$..[InstanceId,InstanceName,Cpu,Memory]")

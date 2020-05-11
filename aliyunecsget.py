@@ -32,19 +32,16 @@ while pagenumber <= 1000:
 
 # selove request.n
     response = clt.do_action_with_exception(request).decode().strip('b')
-    jresponse = jsonpath(json.loads(response),"$..Instance")
-    if len(response) >= 1000:
-#    print(response)
-#    if jresponse != False:
-#        n = 4
-#        for i in range(0,len(jresponse),n):
-#            nresponse = jresponse[i:i+n]
+    jresponse = jsonpath(json.loads(response),"$..[InstanceId,InstanceName,Cpu,Memory]")
+    print(response)
+    if jresponse != False:
+        n = 4
+        for i in range(0,len(jresponse),n):
+            nresponse = jresponse[i:i+n]
 #            print(jresponse)
-        print(len(response))
-        print(jresponse)
-        pagenumber += 1
+            print(nresponse)
 #            print(response)
-#            pagenumber += 1
+            pagenumber += 1
     else:
         break
 #    jresponse[0].split(',')

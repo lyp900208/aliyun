@@ -32,14 +32,18 @@ request.set_PageNumber(pagenumber)
 
 # selove request.n
 response = clt.do_action_with_exception(request).decode().strip('b')
-#    jresponse = jsonpath(json.loads(response),"$..[InstanceId,InstanceName,Cpu,Memory]")
+jresponse = json.loads(response)
+
+jpath = jsonpath(json.loads(response),"$..DiskFullStatusType")
+json_response = json.dumps(jpath,indent=4)
 #    if jresponse != False:
 #        n = 4
 #        for i in range(0,len(jresponse),n):
 #            nresponse = jresponse[i:i+n]
 #            print(jresponse)
 #            print(nresponse)
-print(response)
+print(json_response)
+print(jpath)
 #            pagenumber += 1
 #    else:
 #        break
