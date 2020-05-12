@@ -7,12 +7,10 @@ def set_env(argv):
     secret_id = ''
     secret_key = ''
     endpoint = ''
-    product_name = ''
-    api = ''
 
     # 配置选项
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "hr:i:k:e:n:a:",["region_id=","secret_id=","secret_key=","endpoint=","product_name=","api="])
+        opts, args = getopt.getopt(sys.argv[1:], "hr:i:k:e:",["region_id=","secret_id=","secret_key=","endpoint="])
 
     # 处理异常
     except getopt.GetoptError:
@@ -32,11 +30,7 @@ def set_env(argv):
             secret_key = arg
         elif opt in ("-e", "--endpoint"):
             endpoint = arg
-        elif opt in ("-n", "--product_name"):
-            product_name = arg
-        elif opt in ("-a", "--api"):
-            api = arg
-    return (region_id, secret_id, secret_key, endpoint, product_name, api)
+    return (region_id, secret_id, secret_key, endpoint)
 
 if __name__ == "__main__":
     set_env(sys.argv[1:])
