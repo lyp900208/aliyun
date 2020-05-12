@@ -8,7 +8,7 @@ def set_env(argv):
     secret_id = ''
     secret_key = ''
     endpoint = ''
-    product_name = ''
+    product_name = 'ecs'
     api = ''
     filename = ''
     start_time = (datetime.today() + timedelta(days = -1)).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -16,13 +16,13 @@ def set_env(argv):
 
     # 配置选项
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "hr:i:k:e:n:a:f:s:l:",["region_id=","secret_id=","secret_key=","endpoint=","product_name=","api=",
+        opts, args = getopt.getopt(sys.argv[1:], "hr:u:k:f:s:l:",["region_id=","secret_id=","secret_key=","endpoint=","api=",
                                    "filename=","start_time=","last_time="])
 
     # 处理异常
     except getopt.GetoptError:
         print("""
-        script.py -r <region_id> -i <secret_id> -k <secret_key> -e <endpoint> -p <product_name> -a <api> -f <filename> -s <start_time> -l <last_time>
+        script.py -r <region_id> -u <secret_id> -k <secret_key> <endpoint> <api> -f <filename> -s <start_time> -l <last_time>
         """)
         sys.exit(2)
 
@@ -30,20 +30,18 @@ def set_env(argv):
     for opt, arg in opts:
         if opt == "-h":
             print("""
-            script.py -r <region_id> -i <secret_id> -k <secret_key> -e <endpoint> -p <product_name> -a <api> -f <filename> -s <start_time> -l <last_time>
+            script.py -r <region_id> -u <secret_id> -k <secret_key> <endpoint> <api> -f <filename> -s <start_time> -l <last_time>
             """)
             sys.exit(2)
         elif opt in ("-r", "--region_id"):
             region_id = arg
-        elif opt in ("-i", "--secret_id"):
+        elif opt in ("-u", "--secret_id"):
             secret_id = arg
         elif opt in ("-k", "--secret_key"):
             secret_key = arg
-        elif opt in ("-e", "--endpoint"):
+        elif opt in ("--endpoint"):
             endpoint = arg
-        elif opt in ("-n", "--product_name"):
-            product_name = arg
-        elif opt in ("-a", "--api"):
+        elif opt in ("--api"):
             api = arg
         elif opt in ("-f", "--filename"):
             filename = arg
